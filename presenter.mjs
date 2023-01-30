@@ -122,7 +122,33 @@ function noteFactory(id, entry) {
 
   note.appendChild(textArea);
   // ------------END: TEXT------------
+  
+  //-----------  START: TAB CONFIGURATION -----------
+  textArea.addEventListener("keydown", function (event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      // Commands to retrieve the position
+      // of the text selection
+      const start = textArea.selectionStart;
+      const end = textArea.selectionEnd;
 
+      // Commands to separate the text before
+      // and after the text selection
+      const inputText = textArea.value;
+      let textBefore = inputText.substring(0, start);
+      let textAfter = inputText.substring(end, inputText.length);
+
+      // Insertion of the tab character:
+      textArea.value = textBefore + "\t" + textAfter;
+
+      // Commands to make the text selection
+      // to behave correctly:
+      textArea.selectionStart = start + 1;
+      textArea.selectionEnd = start + 1;
+    }
+  });
+  //-----------   END: TAB CONFIGURATION  -----------
+  
   // --------START: DELETE BUTTON--------
   let deleteButton = document.createElement("button");
   deleteButton.setAttribute("class", "deleteButton");
@@ -136,7 +162,6 @@ function noteFactory(id, entry) {
   };
 
   note.appendChild(deleteButton);
-
   // --------END: DELETE BUTTON--------
 
   // Append the note to the DOM:
