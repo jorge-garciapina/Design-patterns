@@ -48,4 +48,30 @@ searchArea.addEventListener("input", () => {
 
   inputText.innerHTML = String(50 - charNum) + "/50";
 });
+
+//-----------  START: TAB CONFIGURATION -----------
+searchArea.addEventListener("keydown", function (event) {
+  if (event.key === "Tab") {
+    event.preventDefault();
+    // Commands to retrieve the position
+    // of the text selection
+    const start = searchArea.selectionStart;
+    const end = searchArea.selectionEnd;
+
+    // Commands to separate the text before
+    // and after the text selection
+    const inputText = searchArea.value;
+    let textBefore = inputText.substring(0, start);
+    let textAfter = inputText.substring(end, inputText.length);
+
+    // Insertion of the tab character:
+    searchArea.value = textBefore + "\t" + textAfter;
+
+    // Commands to make the text selection
+    // to behave correctly:
+    searchArea.selectionStart = start + 1;
+    searchArea.selectionEnd = start + 1;
+  }
+});
+//-----------   END: TAB CONFIGURATION  -----------
 // --------------END: SEARCHING AREA----------------
