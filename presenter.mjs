@@ -12,7 +12,7 @@ import { zeroRemover, zeroAdder } from "./auxiliaryFunctions.mjs";
 
 function noteFactory(id, entry) {
   // -------START: NOTE'S BASICS-------
-  let note = document.createElement("div");
+  let note = document.createElement("template");
   note.setAttribute("class", "note");
   note.id = id;
   // --------END: NOTE'S BASICS--------
