@@ -6,9 +6,9 @@
 // 3) THIS INPUTS WILL BE MANAGE BY PRESENTE LAYER 2
 
 import noteCommand from "./command.mjs";
-// import dragMovement from "./movement.mjs";
 import entryReader from "./auxiliaryFunctions.mjs";
 import { zeroRemover, zeroAdder } from "./auxiliaryFunctions.mjs";
+import modelObject from "./model.mjs";
 
 function noteFactory(id, entry) {
   // -------START: NOTE'S BASICS-------
@@ -52,7 +52,7 @@ function noteFactory(id, entry) {
     let newCoordinates =
       zeroAdder(properties["globalLeft"]) + zeroAdder(properties["globalTop"]);
     let newEntry = newCoordinates + entry.substring(10, entry.length);
-    let oldEntry = localStorage.getItem(id);
+    let oldEntry = modelObject.modelGetItem(id);
     // COMMAND:
     noteCommand.movementCommand(note.id, newEntry, oldEntry);
     note.removeEventListener("mousemove", dragMovement);
@@ -106,10 +106,9 @@ function noteFactory(id, entry) {
     wordCounter.innerHTML = String(90 - charNum) + "/90";
     // COMMAND:
 
-    let oldEntry = localStorage.getItem(id);
+    let oldEntry = modelObject.modelGetItem(id);
 
     let information = entryReader(oldEntry);
-    console.log(information);
     let newEntry =
       information.coordinates[0] +
       information.coordinates[1] +
@@ -157,7 +156,7 @@ function noteFactory(id, entry) {
   // To handle the click on the delete button:
   deleteButton.onclick = () => {
     // COMMAND:
-    let entry = localStorage.getItem(id);
+    let entry = modelObject.modelGetItem(id);
     noteCommand.deletionCommand(id, entry);
   };
 
