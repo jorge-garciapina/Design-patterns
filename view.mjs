@@ -2,20 +2,13 @@
 // RELATED WITH THE HTML
 // I CONSIDER THIS THE VIEW LAYER 1
 import noteCommand from "./command.mjs";
+import noteSubject from "./observer.mjs";
+
 
 // --------------- START: SESSION---------------
 window.addEventListener("load", function () {
-  const visited = localStorage.getItem("0");
-  if (!!visited) {
-    // When the user refresh the page
-    noteCommand.reloadCommand();
-  } else {
-    // When the user opens the page for the first time
-    localStorage.setItem("i", "1");
-    // localStorage.setItem("0", "visited");
-  }
+  noteSubject.indexInitialization();
 });
-
 //---------------- END: SESSION----------------
 
 // -------------START: Undo button---------------
@@ -28,7 +21,7 @@ undo.onclick = function () {
 // -------------START: New note button---------------
 let noteCreation = document.getElementById("new-note");
 noteCreation.onclick = function () {
-  let id = localStorage.getItem("i");
+  let id = noteSubject.generateID();
   noteCommand.creationCommand(id);
 };
 // --------------END: New note button----------------
