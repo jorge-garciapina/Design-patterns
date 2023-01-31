@@ -2,12 +2,12 @@
 // RELATED WITH THE HTML
 // I CONSIDER THIS THE VIEW LAYER 1
 import noteCommand from "./command.mjs";
-import noteSubject from "./observer.mjs";
+import modelObject from "./model.mjs";
 
 
 // --------------- START: SESSION---------------
 window.addEventListener("load", function () {
-  noteSubject.indexInitialization();
+  modelObject.indexInitialization();
 });
 //---------------- END: SESSION----------------
 
@@ -21,7 +21,7 @@ undo.onclick = function () {
 // -------------START: New note button---------------
 let noteCreation = document.getElementById("new-note");
 noteCreation.onclick = function () {
-  let id = noteSubject.generateID();
+  let id = modelObject.generateID();
   noteCommand.creationCommand(id);
 };
 // --------------END: New note button----------------
