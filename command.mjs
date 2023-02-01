@@ -1,13 +1,12 @@
-import noteSubject from "./observer.mjs";
+import modelObject from "./model.mjs";
 class NoteCommand {
   constructor(subject) {
     this.history = [];
   }
-
   undoCommand() {
     let command = this.history[this.history.length - 1];
 
-    noteSubject.undoAction(command);
+    modelObject.undoAction(command);
 
     let deleted = this.history.pop();
   }
@@ -19,7 +18,7 @@ class NoteCommand {
     };
     this.history.push(command);
 
-    noteSubject.commandHandler(command);
+    modelObject.commandHandler(command);
   }
 
   deletionCommand(id, entry) {
@@ -29,9 +28,8 @@ class NoteCommand {
       entry: entry,
     };
     this.history.push(command);
-    console.log(command);
 
-    noteSubject.commandHandler(command);
+    modelObject.commandHandler(command);
   }
 
   modificationCommand(id, newEntry, oldEntry) {
@@ -48,7 +46,7 @@ class NoteCommand {
 
     this.history.push(oldCommand);
 
-    noteSubject.commandHandler(newCommand);
+    modelObject.commandHandler(newCommand);
   }
 
   reloadCommand() {
@@ -59,7 +57,7 @@ class NoteCommand {
     };
     this.history.push(command);
 
-    noteSubject.commandHandler(command);
+    modelObject.commandHandler(command);
   }
 
   movementCommand(id, newEntry, oldEntry) {
@@ -76,16 +74,17 @@ class NoteCommand {
 
     this.history.push(oldCommand);
 
-    noteSubject.commandHandler(newCommand);
+    modelObject.commandHandler(newCommand);
   }
 
-  searchCommand(array) {
+  searchCommand(text) {
     // The searches will not generate history
-    noteSubject.searchHandler(array);
+    modelObject.searchHandler(text);
   }
 }
 
 let noteCommand = new NoteCommand();
-noteSubject.addObserver(noteCommand);
+// modelObject.addObserver(noteCommand);
 
 export default noteCommand;
+
