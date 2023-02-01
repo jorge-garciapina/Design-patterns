@@ -4,10 +4,16 @@
 import noteCommand from "./command.mjs";
 import modelObject from "./model.mjs";
 
-
 // --------------- START: SESSION---------------
 window.addEventListener("load", function () {
-  modelObject.indexInitialization();
+  const visited = modelObject.modelGetItem("0");
+  if (!!visited) {
+    // When the user refresh the page
+    noteCommand.reloadCommand();
+  } else {
+    // When the user opens the page for the first time
+    modelObject.indexInitialization();
+  }
 });
 //---------------- END: SESSION----------------
 
@@ -32,14 +38,14 @@ searchArea.maxLength = 50;
 
 // Character counter:
 searchArea.addEventListener("input", () => {
-  let wordsToSearch = searchArea.value.split(" ");
-  wordsToSearch = wordsToSearch.filter((elmnt) => elmnt !== "");
-
-  noteCommand.searchCommand(wordsToSearch);
+  // Character counter:
   let charNum = searchArea.value.length;
   let inputText = document.getElementById("word-counter");
 
-  inputText.innerHTML = String(50 - charNum) + "/50";
+  //Search word:
+  noteCommand.searchCommand(searchArea.value);
+
+  inputText.textContent = String(50 - charNum) + "/50";
 });
 
 //-----------  START: TAB CONFIGURATION -----------
