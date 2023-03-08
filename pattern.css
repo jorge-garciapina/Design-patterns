@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+#searching {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid;
+
+  width: 400px;
+  height: 210px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#searching-title {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+#search-area {
+  width: 100%;
+  height: 80%;
+  resize: none;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+#character-counter {
+  position: absolute;
+  right: 1%;
+  bottom: 10%;
+  color: black;
+}
+
+.button-html {
+  margin-top: 5px;
+  font-size: 1.5rem;
+  font-family: "Times New Roman", Times, serif;
+}
+/* Styles of the elements created using javascript */
+.note {
+  width: 250px;
+  height: 210px;
+  background-color: yellow;
+  margin: 0px 2px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  position: absolute;
+}
+
+.text-area {
+  width: 90%;
+  height: 80%;
+  margin: 5% 5% 5%;
+  resize: none;
+  background-color: yellow;
+  border: dashed;
+  font-size: 1.1rem;
+}
+
+.notes-character-counter {
+  display: flex;
+  position: absolute;
+  font-size: 1.1rem;
+  bottom: 0%;
+  right: 5%;
+}
+
+.note-button {
+  font-size: 1rem;
+  background-color: #ffe15d;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
+}
