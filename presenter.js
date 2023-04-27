@@ -1,6 +1,14 @@
 import noteCommand from "./command.mjs";
 import modelObject from "./model.mjs";
 
+function sanitizeInput(input) {
+  const allowedCharacters = /^[a-zA-Z0-9\s!"#$%&/()=?¡+\\*\/-]*$/;
+  return input
+    .split("")
+    .filter((char) => allowedCharacters.test(char))
+    .join("");
+}
+
 function manageInputInSearchArea(
   searchArea,
   characterCounter,
@@ -10,6 +18,7 @@ function manageInputInSearchArea(
 
   // Character counter:
   searchArea.addEventListener("input", () => {
+    searchArea.value = sanitizeInput(searchArea.value);
     let numberOfCharacters = searchArea.value.length;
 
     sendSearchCommand(searchArea.value);
@@ -59,7 +68,21 @@ function manageInputInSearchArea(
 }
 
 export function manageCharacterCounterInNote(areaToSearch, counterElement) {
-  let numberOfCharacters = areaToSearch.value.replace(/\t/g, " ").length;
+  // Remove any disallowed characters from the input
+  const allowedCharacters = /^[a-zA-Z0-9\s!"#$%&/()=?¡+\\*\/-]*$/;
+  const sanitizedValue = areaToSearch.value
+    .split("")
+    .filter((char) => allowedCharacters.test(char))
+    .join("");
+
+  areaToSearch.value = sanitizedValue.replace(/\t/g, " ");
+  let numberOfCharacters = sanitizedValue.length;
+
+  if (numberOfCharacters > 90) {
+    areaToSearch.value = areaToSearch.value.slice(0, 90);
+    numberOfCharacters = 90;
+  }
+
   counterElement.textContent = String(90 - numberOfCharacters) + "/90";
 }
 
