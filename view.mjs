@@ -1,7 +1,7 @@
 // THIS MODULES MANAGES THE INPUTS THAT ARE DIRECTLY
 // RELATED WITH THE HTML
 // I CONSIDER THIS THE VIEW LAYER 1
-import noteCommand from "./command.mjs";
+import noteCommand from "./modelCommand.mjs";
 import modelObject from "./model.mjs";
 import manageInputInSearchArea from "./presenter.js";
 
