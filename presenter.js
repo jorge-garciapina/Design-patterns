@@ -1,4 +1,4 @@
-import noteCommand from "./command.mjs";
+import noteCommand from "./modelCommand.mjs";
 import modelObject from "./model.mjs";
 
 function sanitizeInput(input) {
